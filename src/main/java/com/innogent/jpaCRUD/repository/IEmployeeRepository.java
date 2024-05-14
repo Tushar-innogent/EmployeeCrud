@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 import com.innogent.jpaCRUD.entities.Employee;
 
 @Repository
-public interface EmployeeRepository extends JpaRepository<Employee, Long>, PagingAndSortingRepository<Employee, Long>{
+public interface IEmployeeRepository extends JpaRepository<Employee, Long>, PagingAndSortingRepository<Employee, Long>{
 	
 	static final String salaryoOfEachDept = "SELECT e.department, sum(e.salary) Salary_sum FROM Employee e GROUP BY e.department";
 	static final String countEmpInEachDept = "SELECT DEPARTMENT, COUNT(*) EMPLOYEE_COUNT FROM EMPLOYEE GROUP BY DEPARTMENT";

@@ -6,16 +6,17 @@ import java.util.Map;
 import com.innogent.jpaCRUD.entities.Employee;
 import com.innogent.jpaCRUD.model.EmployeeM;
 
-public interface EmployeeService {
+public interface IEmployeeService {
 
 	//Get All Employees
-	public List<EmployeeM> getAllEmployees();
+	public List<Employee> getAllEmployees();
+//	public List<EmployeeM> getAllEmployees();
 	
 	//Add a Employee
-	public EmployeeM addEmployee(EmployeeM e);
+	public Employee addEmployee(Employee e);
 	
 	//Edit a Employee detail
-	public EmployeeM editEmployeeById(Long id, EmployeeM e);
+	public Employee editEmployeeById(Long id, Employee e);
 	
 	//Delete a Employee
 	public String deleteEmployeeById(Long id);
@@ -53,5 +54,5 @@ public interface EmployeeService {
 	//find sum of salaries of each department
 	public Map<String, Double> salaryOfEachDepartment();
 
-	public EmployeeM getEmployee(Long id);
+	public Employee getEmployee(Long id);
 }

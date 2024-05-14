@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 
+import com.innogent.jpaCRUD.dto.EmployeeDTO;
 import com.innogent.jpaCRUD.entities.Employee;
 import com.innogent.jpaCRUD.model.EmployeeM;
 
@@ -21,6 +22,9 @@ public class EmployeeMapper {
     public EmployeeM employeeEntityToModel(Employee employee) {
         return modelMapper.map(employee, EmployeeM.class);
     }
+    public EmployeeDTO employeeEntityToDTO(Employee employee) {
+    	return modelMapper.map(employee, EmployeeDTO.class);
+    }
 
     public Employee modelToEntity(EmployeeM employeeM) {
         return modelMapper.map(employeeM, Employee.class);
@@ -33,4 +37,6 @@ public class EmployeeMapper {
     public List<Employee> mapModelToEntities(List<EmployeeM> list){
     	return list.stream().map(this::modelToEntity).collect(Collectors.toList());
     }
+    
+    
 }

@@ -21,16 +21,16 @@ import org.springframework.web.bind.annotation.RestController;
 import com.innogent.jpaCRUD.entities.Employee;
 import com.innogent.jpaCRUD.exceptionHandler.GlobalExceptionHandler;
 import com.innogent.jpaCRUD.model.EmployeeM;
-import com.innogent.jpaCRUD.service.EmployeeService;
+import com.innogent.jpaCRUD.service.IEmployeeService;
 
 @CrossOrigin
 @RestController
 public class MainController {
 	
-	private EmployeeService employeeService;
+	private IEmployeeService employeeService;
 	private GlobalExceptionHandler exceptionHandler;
 	
-	public MainController(@Autowired EmployeeService service, @Autowired GlobalExceptionHandler exceptionHandler) {
+	public MainController(@Autowired IEmployeeService service, @Autowired GlobalExceptionHandler exceptionHandler) {
 		this.employeeService = service;
 		this.exceptionHandler = exceptionHandler;
 	}
@@ -46,9 +46,10 @@ public class MainController {
 	}
 	
 	@PostMapping("/add")
-	public ResponseEntity<?> addEmployee(@RequestBody EmployeeM employeeM){
+	public ResponseEntity<?> addEmployee(@RequestBody Employee employee){
 		try {
-			return ResponseEntity.status(HttpStatus.CREATED).body(employeeService.addEmployee(employeeM));
+			Employee emp = employeeService.addEmployee(employee);
+			return ResponseEntity.status(HttpStatus.OK).body(emp);
 		}
 		catch(IllegalArgumentException exception) {
 			return exceptionHandler.illegalArgumentException(exception);
@@ -56,7 +57,7 @@ public class MainController {
 	}
 	
 	@PutMapping("/edit/{id}")
-	public ResponseEntity<?> editEmployee(@PathVariable Long id, @RequestBody EmployeeM employee){
+	public ResponseEntity<?> editEmployee(@PathVariable Long id, @RequestBody Employee employee){
 		try {
 			return ResponseEntity.status(HttpStatus.CREATED).body(employeeService.editEmployeeById(id, employee));
 		}
